@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAYMENT RAFZZOFFC</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: url('https://placehold.co/1920x1080/0a0e17/1e293b?text=Deep+Space+Nebula') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        .container {
+            backdrop-filter: blur(8px);
+            background-color: rgba(5, 10, 30, 0.6);
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(100, 150, 255, 0.3);
+            padding: 40px;
+            margin: 50px auto;
+            max-width: 700px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .logo-container {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 30px;
+            border-radius: 50%;
+            border: 3px solid #5ddcff;
+            box-shadow: 0 0 20px #5ddcff;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .logo-container:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px #5ddcff;
+        }
+        
+        h1 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 40px;
+            text-shadow: 0 0 15px #5ddcff;
+            position: relative;
+        }
+        
+        h1::after {
+            content: '';
+            display: block;
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(to right, transparent, #5ddcff, transparent);
+            margin: 15px auto;
+        }
+        
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 25px;
+            margin: 25px 0;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            right: -15px;
+            bottom: -15px;
+            border-radius: 20px;
+            background: linear-gradient(45deg, 
+                rgba(93, 220, 255, 0.8),
+                rgba(159, 122, 234, 0.8),
+                rgba(44, 62, 80, 0.8),
+                transparent);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+        
+        .btn:hover::before {
+            opacity: 1;
+        }
+        
+        .btn-qris {
+            background: linear-gradient(to right, #3b41c5, #6d44b4);
+            box-shadow: 0 0 20px rgba(59, 65, 197, 0.7);
+        }
+        
+        .btn-dana {
+            background: linear-gradient(to right, #0093E9, #6D44B4);
+            box-shadow: 0 0 20px rgba(0, 147, 233, 0.7);
+        }
+        
+        .qris-container {
+            margin: 30px auto;
+            text-align: center;
+            display: none;
+        }
+        
+        .qris-image {
+            width: 300px;
+            height: 300px;
+            margin: 0 auto;
+            border: 2px solid #5ddcff;
+            border-radius: 15px;
+            box-shadow: 0 0 25px rgba(93, 220, 255, 0.5);
+            background-color: white;
+            padding: 15px;
+        }
+        
+        .dana-info {
+            background: rgba(5, 10, 30, 0.7);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+            display: none;
+            border-left: 5px solid #0093E9;
+            font-size: 1.2rem;
+        }
+        
+        .dana-info p {
+            margin: 15px 0;
+            font-size: 1.3rem;
+        }
+        
+        .reminder {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(to right, #1e2b58, #2a5298);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.4rem;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4), 
+                        0 0 10px rgba(93, 220, 255, 0.6);
+            z-index: 1000;
+            display: none;
+            animation: slideDown 0.5s ease-out, glow 2s infinite alternate;
+            text-align: center;
+            border: 1px solid #5ddcff;
+        }
+        
+        @keyframes slideDown {
+            from {
+                top: -50px;
+                opacity: 0;
+            }
+            to {
+                top: 20px;
+                opacity: 1;
+            }
+        }
+        
+        @keyframes glow {
+            from {
+                box-shadow: 0 5px 15px rgba(0,0,0,0.4), 
+                            0 0 10px rgba(93, 220, 255, 0.6);
+            }
+            to {
+                box-shadow: 0 5px 20px rgba(0,0,0,0.5), 
+                            0 0 20px rgba(93, 220, 255, 0.8);
+            }
+        }
+        
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle var(--duration) infinite ease-in-out;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+    
+    <!-- Sound effects -->
+    <audio id="clickSound" src="https://assets.mixkit.co/sfx/preview/mixkit-arcade-game-jump-coin-216.mp3" preload="auto"></audio>
+    <audio id="notificationSound" src="https://assets.mixkit.co/sfx/preview/mixkit-positive-interface-beep-221.mp3" preload="auto"></audio>
+    
+    <div class="reminder" id="reminder">JANGAN LUPA BUKTI TRANSFER ✍️</div>
+    
+    <div class="container">
+        <div class="logo-container">
+            <!-- Logo can be replaced by changing this URL -->
+            <img src="https://files.catbox.moe/r3w3mr.png" alt="RAFZZOFFC Company Logo - Modern minimalist design with glowing blue accents" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+        
+        <h1>PAYMENT RAFZZOFFC</h1>
+        
+        <button class="btn btn-qris" id="qrisBtn">QRIS PAYMENT</button>
+        
+        <div class="qris-container" id="qrisContainer">
+            <!-- QRIS image can be replaced by changing this URL -->
+            <img src="https://files.catbox.moe/ctj6xm.png" alt="QRIS payment code for RAFZZOFFC payments" class="qris-image">
+        </div>
+        
+        <button class="btn btn-dana" id="danaBtn">DANA PAYMENT</button>
+        
+        <div class="dana-info" id="danaInfo">
+            <h3 style="color: #5ddcff; margin-bottom: 20px; font-size: 1.6rem;">PAYMENT DETAILS</h3>
+            <p>NOMOR : <strong>087772598143</strong></p>
+            <p>NAMA : <strong>AYUKA ANDIRA</strong></p>
+        </div>
+    </div>
+
+    <script>
+        // Audio elements
+        const clickSound = document.getElementById('clickSound');
+        const notificationSound = document.getElementById('notificationSound');
+        
+        // Create stars background
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const starCount = 150;
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                const size = Math.random() * 4;
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                const duration = 2 + Math.random() * 3 + 's';
+                const delay = Math.random() * 5 + 's';
+                
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.left = `${posX}%`;
+                star.style.top = `${posY}%`;
+                star.style.setProperty('--duration', duration);
+                star.style.animationDelay = delay;
+                
+                starsContainer.appendChild(star);
+            }
+        }
+        
+        // Show reminder notification
+        function showReminder() {
+            const reminder = document.getElementById('reminder');
+            reminder.style.display = 'block';
+            notificationSound.currentTime = 0;
+            notificationSound.play();
+            
+            setTimeout(() => {
+                reminder.style.display = 'none';
+            }, 3000);
+        }
+        
+        // Initialize stars
+        createStars();
+        
+        // QRIS button functionality
+        document.getElementById('qrisBtn').addEventListener('click', function() {
+            const qrisContainer = document.getElementById('qrisContainer');
+            const danaInfo = document.getElementById('danaInfo');
+            
+            qrisContainer.style.display = qrisContainer.style.display === 'block' ? 'none' : 'block';
+            danaInfo.style.display = 'none';
+            
+            // Add glow effect, show reminder, and play sound
+            this.classList.add('active');
+            clickSound.currentTime = 0;
+            clickSound.play();
+            showReminder();
+            
+            setTimeout(() => {
+                this.classList.remove('active');
+            }, 500);
+        });
+        
+        // DANA button functionality
+        document.getElementById('danaBtn').addEventListener('click', function() {
+            const danaInfo = document.getElementById('danaInfo');
+            const qrisContainer = document.getElementById('qrisContainer');
+            
+            danaInfo.style.display = danaInfo.style.display === 'block' ? 'none' : 'block';
+            qrisContainer.style.display = 'none';
+            
+            // Add glow effect, show reminder, and play sound
+            this.classList.add('active');
+            clickSound.currentTime = 0;
+            clickSound.play();
+            showReminder();
+            
+            setTimeout(() => {
+                this.classList.remove('active');
+            }, 500);
+        });
+        
+        // Add pulse animation to buttons periodically
+        setInterval(() => {
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach(btn => {
+                setTimeout(() => {
+                    btn.classList.add('pulse');
+                    setTimeout(() => {
+                        btn.classList.remove('pulse');
+                    }, 1000);
+                }, Math.random() * 3000);
+            });
+        }, 5000);
+    </script>
+</body>
+</html>
